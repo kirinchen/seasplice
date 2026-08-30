@@ -1,0 +1,29 @@
+# 媒體 / 渲染產物一律不進 git
+*.mp4
+*.mov
+*.mkv
+*.webm
+*.mp3
+*.wav
+*.aac
+*.m4a
+out/
+renders/
+data/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# 環境 / 秘密
+.env
+*.env
+
+# 編輯器 / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp

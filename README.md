@@ -9,8 +9,8 @@
 
 ## 為什麼
 
-AI 影片工廠([aura-stream](https://github.com/kirinchen/aura-stream))的剪輯目前是一串各自獨立的命令式工具:
-`cut_clip → export_film → strip_audio → …`,每步各自重編碼、各落一個中間檔。
+AI 影片工廠的剪輯通常長成一串各自獨立的命令式工具:
+`cut → concat → strip_audio → …`,每步各自重編碼、各落一個中間檔。
 反悔一步 = 重跑下游全部;`clip1-raw / clip1 / clip2-nochain / clip2` 這種檔名就是代價。
 
 Creatomate / Shotstack 證明了另一條路:**剪輯決策用 JSON 寫,渲染只在最後做一次**。
@@ -71,8 +71,7 @@ seasplice render   timeline.json --run    # 真跑
 
 ## 關聯
 
-- 首個 consumer:[aura-stream](https://github.com/kirinchen/aura-stream)(`doc/render-layering.md` 的「自動 render 路」)
-- 調度 / SA:[kelp](https://github.com/kirinchen/kelp)
+- 首個 consumer:作者自己的 AI 影片工廠(private),走「自動 render 路」(無創意判斷的確定性組裝)
 
 ## License
 

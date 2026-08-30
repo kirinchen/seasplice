@@ -151,24 +151,26 @@ Renderer(ABC): available() · build_plan(timeline) -> Plan · render(plan)
 
 JSON 不綁 backend;`plan --backend` 可切。
 
-## 7. 與 aura-stream 既有工具的對應
+## 7. 與典型命令式工具鏈的對應
 
-| aura-stream `tools/` | seasplice 對應 | 去向 |
+以首個 consumer(作者的 AI 影片工廠)現有的工具為例,每一支都能對到 DSL 的一個 op 或被保留為量測 helper:
+
+| 命令式工具(功能) | seasplice 對應 | 去向 |
 |---|---|---|
-| `cut_clip.py`(trim + 壓 fps + 去音) | `video[].trim` + `output.fps` + `audio.mode=strip` | 退役成 op |
-| `export_film.py`(多段裁頭尾接起來) | `video[]` 列表 | 退役成 op |
-| `strip_audio.py` | `audio.mode=strip` | 退役成 op |
-| `toolbox/render/ffmpeg_render.py`(loop + BGM) | `video[].loop_to` + `audio.mode=bgm` | 退役,registry 骨架可搬來 |
-| `align_audio.py` / `beat_grid.py`(量測) | **不對應** —— 它們是「量出數字」的工具 | 保留;輸出改成可直接填進 JSON 的片段(如 `audio.offset`) |
-| `extract_frame.py` / `silence_check.py` / `waveform.py` | 不對應(檢視 / 診斷) | 保留 |
+| 裁段(trim + 壓 fps + 去音) | `video[].trim` + `output.fps` + `audio.mode=strip` | 退役成 op |
+| 多段接片(各段裁頭尾後 concat) | `video[]` 列表 | 退役成 op |
+| 去音軌 | `audio.mode=strip` | 退役成 op |
+| loop 到目標長度 + 疊 BGM | `video[].loop_to` + `audio.mode=bgm` | 退役,registry 骨架可搬來 |
+| 音訊對拍 / 節拍格(量測) | **不對應** —— 它們是「量出數字」的工具 | 保留;輸出改成可直接填進 JSON 的片段(如 `audio.offset`) |
+| 抽幀 / 靜音檢查 / 波形(檢視、診斷) | 不對應(檢視 / 診斷) | 保留 |
 
 ## 8. Roadmap
 
 | 版 | 內容 | 觸發條件 |
 |---|---|---|
 | **v0** | 本檔全部:schema、validate / plan / render、ffmpeg backend、normalize、strip/keep/bgm | 現在 |
-| v1 | `overlay`(圖 / 文字 / 浮水印)、`xfade` 轉場、`speed`、多 video track | aura-stream 某頻道真的需要 |
-| v2 | fcpxml / otio exporter(人工收尾路)、MoviePy backend | history-suspense 級重片開工 |
+| v1 | `overlay`(圖 / 文字 / 浮水印)、`xfade` 轉場、`speed`、多 video track | 首個 consumer 真的需要 |
+| v2 | fcpxml / otio exporter(人工收尾路)、MoviePy backend | 需要人工收尾(NLE)的重片開工 |
 
 ## 9. 已知風險
 

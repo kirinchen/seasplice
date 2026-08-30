@@ -181,6 +181,6 @@ JSON 不綁 backend;`plan --backend` 可切。
 
 ## 10. 待拍板
 
-- [ ] `trim` 用 `end` 還是 `dur` 當主要寫法(草案:兩者皆收,`dur` 優先文件化,對齊 `export_film` 的 `a.mp4:start:dur` 慣例)
+- [ ] `trim` 用 `end` 還是 `dur` 當主要寫法(草案:兩者皆收,`dur` 優先文件化,對齊常見 `file:start:dur` 寫法)
 - [ ] `output.size` 省略時取「第一段」還是「最大解析度」(草案:第一段,可預測)
-- [ ] 是否 v0 就給 `video[].fps_override`(對齊 `cut_clip` 壓 24fps 省 fal 費用的需求)—— 草案:不給,`output.fps` 已覆蓋
+- [ ] 是否 v0 就給 `video[].fps_override`(對應「送影片生成 API 前先壓 24fps 省費用」的需求)—— 草案:不給,`output.fps` 已覆蓋
